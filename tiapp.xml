@@ -4,9 +4,12 @@
     <property name="acs-oauth-secret-production" type="string">woM541hHDFclNmQRhciEqGRdOUChoh7N</property>
     <property name="acs-oauth-key-production" type="string">9HmhZ82TJm4MjhQzd9gs3q4XZNTiQSA8</property>
     <property name="acs-api-key-production" type="string">aYknLN6xmZUTY84NvoAnD9FBfFcNT368</property>
-    <property name="acs-oauth-secret-development" type="string">HtUfzKrmrGQq07IUDScUyPHtlxSHYhqG</property>
+    <property name="acs-oauth-secret-development" type="string">woM541hHDFclNmQRhciEqGRdOUChoh7N</property>
+    <property name="acs-oauth-key-development" type="string">9HmhZ82TJm4MjhQzd9gs3q4XZNTiQSA8</property>
+    <property name="acs-api-key-development" type="string">aYknLN6xmZUTY84NvoAnD9FBfFcNT368</property>
+    <!--<property name="acs-oauth-secret-development" type="string">HtUfzKrmrGQq07IUDScUyPHtlxSHYhqG</property>
     <property name="acs-oauth-key-development" type="string">yl6BP9ubD5CV4X94KXhcCEJLNXm0Gnw3</property>
-    <property name="acs-api-key-development" type="string">s2tf3MZ6hNgPfe91c2ZN1V9sv3uyGKfV</property>
+    <property name="acs-api-key-development" type="string">s2tf3MZ6hNgPfe91c2ZN1V9sv3uyGKfV</property>-->
     <id>org.himade.montblancranch</id>
     <name>Mont Blanc Ranch</name>
     <version>1.0</version>
