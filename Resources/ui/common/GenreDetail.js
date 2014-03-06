@@ -1,5 +1,5 @@
 var acs = require('/lib/ACS');
-function CreateGenreDetailWindow(_genre, _tab){
+function CreateGenreDetailWindow(_genre){
 	
 	var self = Titanium.UI.createWindow({
 		title : _genre,

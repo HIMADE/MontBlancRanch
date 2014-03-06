@@ -27,10 +27,11 @@ exports.GetLocations = function(_genre, _cb){
 	
 };
 
-exports.GetGenres = function(_cb){
+exports.GetGenres = function(_section,_cb){
 	//Get Genres from ACS
 	Cloud.Objects.query({
-		classname : 'genre'
+		classname : 'genre',
+		where:{'tags_array':_section}
 	}, function(e) {
 		if (e.success) {
 			var data = [];

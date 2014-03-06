@@ -1,14 +1,14 @@
-//Constructor for the Dining Tab Window
+//Constructor for the sections Window
 var acs = require('/lib/ACS');
 
-function CreateDiningWindow(_tab){
+function CreateSectionWindow(_section){
 	var self = Titanium.UI.createWindow({
-		title : 'Dining',
+		title : _section,
 		backgroundColor : '#fff'
 	}); 
 	
 	//Get Locations to populate main table.
-	acs.GetGenres(CreateTableCb);
+	acs.GetGenres(_section,CreateTableCb);
 	function CreateTableCb(_data) {
 		var tableView = Ti.UI.createTableView({
 			data : _data || [{
@@ -18,7 +18,7 @@ function CreateDiningWindow(_tab){
 		//Add Event listener for table view.
 		tableView.addEventListener('click', function(e) {
 			var GenreDetail = require('/ui/common/GenreDetail');
-			var genreDetail = new GenreDetail(e.rowData.title, _tab);
+			var genreDetail = new GenreDetail(e.rowData.title);
 			self.containingTab.open(genreDetail);
 			genreDetail.containingTab = self.containingTab;
 		});
@@ -31,4 +31,4 @@ function CreateDiningWindow(_tab){
 
 };//End Main Function
 
-module.exports = CreateDiningWindow;
+module.exports = CreateSectionWindow;
