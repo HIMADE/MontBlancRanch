@@ -4,6 +4,9 @@ Titanium.UI.setBackgroundColor('#000');
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 
+var Yelp = require('/lib/yelp');
+var yelp = new Yelp();
+
 
 
 //
@@ -30,7 +33,7 @@ var tab2 = Titanium.UI.createTab({
     window:activitiesWindow
 });
 
-activitiesWindow.containingTab = tab1;
+activitiesWindow.containingTab = tab2;
 //
 //  add tabs
 //
@@ -40,3 +43,4 @@ tabGroup.addTab(tab2);
 
 // open tab group
 tabGroup.open();
+

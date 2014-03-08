@@ -10,7 +10,7 @@ exports.GetLocations = function(_genre, _cb){
     	}
 }, function (e) {
     if (e.success) {
-        alert('Success:\n' +
+        Ti.API.info('Success:\n' +
             'Count: ' + e.places.length);
             var data = [];
         for (var i = 0; i < e.places.length; i++) {
@@ -35,10 +35,10 @@ exports.GetGenres = function(_section,_cb){
 	}, function(e) {
 		if (e.success) {
 			var data = [];
-			alert('Success:\n' + 'Count: ' + e.genre.length);
+			Ti.API.info('Success:\n' + 'Count: ' + e.genre.length);
 			for (var i = 0; i < e.genre.length; i++) {
 				var genre = e.genre[i];
-				data.push({'id': genre.id, 'title': genre.title, 'hasDetail':true});
+				data.push({'id': genre.id, 'title': genre.title, 'hasChild':true});
 			}
 			_cb(data);
 		} else {

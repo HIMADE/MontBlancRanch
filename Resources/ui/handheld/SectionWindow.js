@@ -10,8 +10,18 @@ function CreateSectionWindow(_section){
 	//Get Locations to populate main table.
 	acs.GetGenres(_section,CreateTableCb);
 	function CreateTableCb(_data) {
+		var sortedData = _data.sort(function(a, b){
+			 var nameA=a.title.toLowerCase(), nameB=b.title.toLowerCase();
+			 if (nameA < nameB){ //sort string ascending
+			  return -1;
+			 }else if(nameA > nameB){
+			  return 1;
+			}else{
+			 return 0; //default return value (no sorting)
+			};
+		});
 		var tableView = Ti.UI.createTableView({
-			data : _data || [{
+			data : sortedData || [{
 				'title' : 'Data Unavailable'
 			}]
 		});

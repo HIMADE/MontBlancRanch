@@ -19,11 +19,11 @@ function CreatePlacesDetailWindow(_place){
 	
 	//----Call Button---
 	//Check if user is on an iPhone Device with dialer capabilities
-	if(Ti.Platform.name === 'iPhone OS'){
+	if(Ti.Platform.name === 'iPhone OS' || Ti.Platform.osname == 'android'){
 	
 		//Create Phone Dialer Button
 		var callButton = Ti.UI.createButton({
-			width : '100dp',
+			width : Ti.UI.SIZE,
 			height : '45dp',
 			title : 'Call Business'
 		});
@@ -41,7 +41,7 @@ function CreatePlacesDetailWindow(_place){
 	if(_place.website != null){
 		//Create Website Button
 		var websiteButton = Ti.UI.createButton({
-			width : '100dp',
+			width :Ti.UI.SIZE,
 			height : '45dp',
 			title : 'View Web Site'
 		});
@@ -57,14 +57,14 @@ function CreatePlacesDetailWindow(_place){
 	
 	//-- Directions Button --	
 	var directionsButton = Ti.UI.createButton({
-		width: '100dp',
+		width: Ti.UI.SIZE,
 		height: '45dp',
 		title: 'Get Directions'
 	});
 	
 	directionsButton.addEventListener('click',function(){
 		var encodedDestination = Ti.Network.encodeURIComponent(_place.address);
-		Ti.Platform.openURL('http://maps.apple.com/?daddr='+ encodedDestination);
+		Ti.Platform.openURL((Ti.Platform.osname == 'android') ? 'http://maps.google.com/?daddr=':'http://maps.apple.com/?daddr=' + encodedDestination);
 	});
 	
 	self.add(directionsButton);
