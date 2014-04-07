@@ -34,7 +34,12 @@ function CreatePlacesDetailWindow(_place){
 		//Add Button to main window
 		self.add(callButton); 
 
-	}// endof iPhone Check
+	}else{
+		var phoneNumberLabel = Ti.UI.createLabel({
+			text: _place.phone
+		});
+	}
+	// endof iPhone Check
 	
 	//--Web Site Button--
 	//Create Website Button if website present
