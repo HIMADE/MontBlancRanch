@@ -1,5 +1,6 @@
 //This file is for communicating with the Appcelerator Cloud Services Platform
 var Cloud = require('ti.cloud');
+var GenreTVR = require('/ui/common/GenreTVR');
 
 exports.GetLocations = function(_genre, _cb){
 	Cloud.Places.query({
@@ -15,7 +16,8 @@ exports.GetLocations = function(_genre, _cb){
             var data = [];
         for (var i = 0; i < e.places.length; i++) {
             var place = e.places[i];
-            var row = {'id':place.id,'title': place.name, 'model': place };
+            Ti.API.info(JSON.stringify(place));
+            var row = GenreTVR(place);
         		data.push(row);
         }
         _cb(data);

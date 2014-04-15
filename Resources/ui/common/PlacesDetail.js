@@ -5,17 +5,26 @@ function CreatePlacesDetailWindow(_place){
 	
 	//Create the main window that will be returned by the constructor.
 	var self = Ti.UI.createWindow({
-		title: _place.name,
+		title: _place.name
+	});
+	
+	var scrollView = Ti.UI.createScrollView({
+		height: Ti.UI.FILL,
+		width: Ti.UI.FILL,
+		contentHeight: 'auto',
+		contentWidth: 'auto',
 		layout: 'vertical'
 	});
 	
 	//This is a temporary lable to store the JSON parameters during development.
-	var label = Ti.UI.createLabel({
-		text: JSON.stringify(_place)
+	var imageView = Ti.UI.createImageView({
+		width: Ti.UI.FILL,
+		height: 100,
+		image: _place.image_url
 	});
 	
 	//Add the temporary label to the window!
-	self.add(label);
+	scrollView.add(imageView);
 	
 	//----Call Button---
 	//Check if user is on an iPhone Device with dialer capabilities
@@ -32,12 +41,13 @@ function CreatePlacesDetailWindow(_place){
 			Ti.Platform.openURL('tel:' + _place.phone_number);
 		});
 		//Add Button to main window
-		self.add(callButton); 
+		scrollView.add(callButton); 
 
 	}else{
 		var phoneNumberLabel = Ti.UI.createLabel({
 			text: _place.phone
 		});
+		scrollView.add(phoneNumberLabel);
 	}
 	// endof iPhone Check
 	
@@ -55,7 +65,7 @@ function CreatePlacesDetailWindow(_place){
 			Ti.Platform.openURL('http://' + _place.website);
 		});
 		//Add Button to main window
-		self.add(websiteButton);
+		scrollView.add(websiteButton);
 
 	}// endof Web Site Check
 	
@@ -68,16 +78,18 @@ function CreatePlacesDetailWindow(_place){
 	});
 	
 	directionsButton.addEventListener('click',function(){
-		var encodedDestination = Ti.Network.encodeURIComponent(_place.address);
+		var encodedDestination = Ti.Network.encodeURIComponent(_place.location.display_address);
 		Ti.Platform.openURL((Ti.Platform.osname == 'android') ? 'http://maps.google.com/?daddr=':'http://maps.apple.com/?daddr=' + encodedDestination);
 	});
 	
-	self.add(directionsButton);
+	scrollView.add(directionsButton);
 	
 	//Remove label from memory once window is closed!
 	self.addEventListener('close',function(){
 		label = null;
 	});
+	
+	self.add(scrollView);
 	
 	//return the label to caller.
 	return self;
