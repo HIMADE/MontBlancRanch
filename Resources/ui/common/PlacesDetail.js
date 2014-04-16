@@ -2,7 +2,7 @@
 
 function CreatePlacesDetailWindow(_place){
 	//--Main Window--
-	
+	alert(_place.reviews.length);
 	//Create the main window that will be returned by the constructor.
 	var self = Ti.UI.createWindow({
 		title: _place.name
@@ -20,12 +20,69 @@ function CreatePlacesDetailWindow(_place){
 	var imageView = Ti.UI.createImageView({
 		width: Ti.UI.FILL,
 		height: 100,
+		width: 100,
+		left: 5,
 		image: _place.image_url
 	});
 	
 	//Add the temporary label to the window!
 	scrollView.add(imageView);
 	
+	///////--ADD REVIEW DATA HERE---///////
+	
+	var reviewView = Ti.UI.createView({
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE
+	});
+	
+	scrollView.add(reviewView);
+	
+	var headerLabel = Ti.UI.createLabel({
+		top: 0,
+		width: Ti.UI.FILL,
+		height: '30dp',
+		font:{
+		},
+		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+		text: '  Reviews',
+		backgroundColor: 'red'
+	});
+	
+	reviewView.add(headerLabel);
+	
+	var reviewImage = Ti.UI.createImageView({
+		image: _place.reviews[0].user.image_url,
+		width: 50,
+		height: 50,
+		left: 5,
+		top: 35
+	});
+	
+	reviewView.add(reviewImage);
+	
+	var reviewDescriptionLabel = Ti.UI.createLabel({
+		text: _place.reviews[0].excerpt,
+		left: 60,
+		right: 5,
+		top: 35,
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+		font:{ fontSize: '12dp'},
+	});
+	
+	reviewView.add(reviewDescriptionLabel);
+	
+	var ratingImage = Ti.UI.createImageView({
+		top: 90,
+		image: _place.reviews[0].rating_image_small_url,
+		width: 50,
+		height: 10,
+		left: 5,
+	});
+	
+	reviewView.add(ratingImage);
+	
+	///
 	//----Call Button---
 	//Check if user is on an iPhone Device with dialer capabilities
 	if(Ti.Platform.name === 'iPhone OS' || Ti.Platform.osname == 'android'){
@@ -38,7 +95,7 @@ function CreatePlacesDetailWindow(_place){
 		});
 		//Add Button Click Event Listener
 		callButton.addEventListener('click', function() {
-			Ti.Platform.openURL('tel:' + _place.phone_number);
+			Ti.Platform.openURL('tel:' + _place.phone);
 		});
 		//Add Button to main window
 		scrollView.add(callButton); 
