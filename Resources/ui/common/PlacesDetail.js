@@ -17,16 +17,46 @@ function CreatePlacesDetailWindow(_place){
 	});
 	
 	//This is a temporary lable to store the JSON parameters during development.
+	
+	var nameView = Ti.UI.createView({
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+	});
+	
+	scrollView.add(nameView);
+	
 	var imageView = Ti.UI.createImageView({
 		width: Ti.UI.FILL,
 		height: 100,
 		width: 100,
 		left: 5,
+		top: 5,
+		bottom: 5,
 		image: _place.image_url
 	});
 	
 	//Add the temporary label to the window!
-	scrollView.add(imageView);
+	nameView.add(imageView);
+	
+	var placeLabel = Ti.UI.createLabel({
+		left: 110,
+		top: 5,
+		width: Ti.UI.FILL,
+		text: _place.name,
+		font: {fontSize: '20dp'},
+	});
+	
+	nameView.add(placeLabel);
+	
+	var locationLabel = Ti.UI.createLabel({
+		left: 110,
+		top: 30,
+		width: Ti.UI.FILL,
+		text: _place.location.display_address[0] + _place.location.display_address[1],
+		font: {fontSize: '12dp'},
+	});
+	
+	nameView.add(locationLabel);
 	
 	///////--ADD REVIEW DATA HERE---///////
 	
