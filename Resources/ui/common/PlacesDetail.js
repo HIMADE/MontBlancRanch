@@ -38,26 +38,47 @@ function CreatePlacesDetailWindow(_place){
 	//Add the temporary label to the window!
 	nameView.add(imageView);
 	
-	var placeLabel = Ti.UI.createLabel({
-		left: 110,
-		top: 5,
+	var slider = Ti.UI.createView({
+		top: 0,
 		width: Ti.UI.FILL,
-		text: _place.name,
-		font: {fontSize: '20dp'},
+		height: Ti.UI.SIZE,
+		layout:'vertical'
 	});
 	
-	nameView.add(placeLabel);
+	nameView.add(slider);
+	
+	var placeLabel = Ti.UI.createLabel({
+		left: 110,
+		top: 2,
+		width: Ti.UI.FILL,
+		height: Ti.UI.SIZE,
+		text: _place.name,
+		font: {fontSize: '17dp'},
+	});
+	
+	slider.add(placeLabel);
 	
 	var locationLabel = Ti.UI.createLabel({
 		left: 110,
-		top: 30,
+		top: 2,
+		height: Ti.UI.SIZE,
 		width: Ti.UI.FILL,
 		text: _place.location.display_address[0] + _place.location.display_address[1],
-		font: {fontSize: '12dp'},
+		font: {fontSize: '13dp'},
 	});
 	
-	nameView.add(locationLabel);
+	slider.add(locationLabel);
 	
+	var phoneLabel = Ti.UI.createLabel({
+		left: 110,
+		top: 2,
+		height: Ti.UI.SIZE,
+		width: Ti.UI.FILL,
+		text: _place.phone,
+		font: {fontSize: '13dp'},
+	});
+	
+	slider.add(phoneLabel);
 	///////--ADD REVIEW DATA HERE---///////
 	
 	var reviewView = Ti.UI.createView({
@@ -71,10 +92,10 @@ function CreatePlacesDetailWindow(_place){
 		top: 0,
 		width: Ti.UI.FILL,
 		height: '30dp',
-		font:{
+		font:{ fontSize: '16dp'
 		},
 		textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-		text: '  Reviews',
+		text: '  Customer Reviews',
 		backgroundColor: 'red'
 	});
 	
@@ -120,8 +141,9 @@ function CreatePlacesDetailWindow(_place){
 		//Create Phone Dialer Button
 		var callButton = Ti.UI.createButton({
 			width : Ti.UI.SIZE,
-			height : '45dp',
-			title : 'Call Business'
+			height : '40dp',
+			title : 'Call',
+			left: 15,
 		});
 		//Add Button Click Event Listener
 		callButton.addEventListener('click', function() {
@@ -144,8 +166,8 @@ function CreatePlacesDetailWindow(_place){
 		//Create Website Button
 		var websiteButton = Ti.UI.createButton({
 			width :Ti.UI.SIZE,
-			height : '45dp',
-			title : 'View Web Site'
+			height : '40dp',
+			title : 'View Web Site',
 		});
 		//Add Website Button Event Listener
 		websiteButton.addEventListener('click', function() {
@@ -160,8 +182,9 @@ function CreatePlacesDetailWindow(_place){
 	//-- Directions Button --	
 	var directionsButton = Ti.UI.createButton({
 		width: Ti.UI.SIZE,
-		height: '45dp',
-		title: 'Get Directions'
+		height: '40dp',
+		title: 'Directions',
+		right: 15,
 	});
 	
 	directionsButton.addEventListener('click',function(){
