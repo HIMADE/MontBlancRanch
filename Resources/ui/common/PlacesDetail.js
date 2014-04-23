@@ -8,22 +8,31 @@ function CreatePlacesDetailWindow(_place){
 		title: _place.name
 	});
 	
+	var mainView = Ti.UI.createView({
+		width: Ti.UI.FILL,
+		height: Ti.UI.FILL
+	});
+	
 	var scrollView = Ti.UI.createScrollView({
 		height: Ti.UI.FILL,
 		width: Ti.UI.FILL,
+		top: 0,
 		contentHeight: 'auto',
 		contentWidth: 'auto',
-		layout: 'vertical'
+		layout: 'vertical',
+		scrollType: 'vertical',
 	});
+	
+	mainView.add(scrollView);
 	
 	//This is a temporary lable to store the JSON parameters during development.
 	
-	var nameView = Ti.UI.createView({
+	var infoView = Ti.UI.createView({
 		width: Ti.UI.FILL,
 		height: Ti.UI.SIZE,
 	});
 	
-	scrollView.add(nameView);
+	scrollView.add(infoView);
 	
 	var imageView = Ti.UI.createImageView({
 		width: Ti.UI.FILL,
@@ -36,16 +45,16 @@ function CreatePlacesDetailWindow(_place){
 	});
 	
 	//Add the temporary label to the window!
-	nameView.add(imageView);
+	infoView.add(imageView);
 	
-	var slider = Ti.UI.createView({
+	var info = Ti.UI.createView({
 		top: 0,
 		width: Ti.UI.FILL,
 		height: Ti.UI.SIZE,
 		layout:'vertical'
 	});
 	
-	nameView.add(slider);
+	infoView.add(info);
 	
 	var placeLabel = Ti.UI.createLabel({
 		left: 110,
@@ -56,7 +65,7 @@ function CreatePlacesDetailWindow(_place){
 		font: {fontSize: '17dp'},
 	});
 	
-	slider.add(placeLabel);
+	info.add(placeLabel);
 	
 	var locationLabel = Ti.UI.createLabel({
 		left: 110,
@@ -67,7 +76,7 @@ function CreatePlacesDetailWindow(_place){
 		font: {fontSize: '13dp'},
 	});
 	
-	slider.add(locationLabel);
+	info.add(locationLabel);
 	
 	var phoneLabel = Ti.UI.createLabel({
 		left: 110,
@@ -78,7 +87,7 @@ function CreatePlacesDetailWindow(_place){
 		font: {fontSize: '13dp'},
 	});
 	
-	slider.add(phoneLabel);
+	info.add(phoneLabel);
 	///////--ADD REVIEW DATA HERE---///////
 	
 	var reviewView = Ti.UI.createView({
@@ -133,6 +142,14 @@ function CreatePlacesDetailWindow(_place){
 	
 	reviewView.add(ratingImage);
 	
+	var contactView = Ti.UI.createView({
+		width: Ti.UI.FILL,
+		bottom: 0,
+		height: Ti.UI.SIZE
+	});
+	
+	mainView.add(contactView);
+	
 	///
 	//----Call Button---
 	//Check if user is on an iPhone Device with dialer capabilities
@@ -144,13 +161,14 @@ function CreatePlacesDetailWindow(_place){
 			height : '40dp',
 			title : 'Call',
 			left: 15,
+			//bottom: 0,
 		});
 		//Add Button Click Event Listener
 		callButton.addEventListener('click', function() {
 			Ti.Platform.openURL('tel:' + _place.phone);
 		});
 		//Add Button to main window
-		scrollView.add(callButton); 
+		contactView.add(callButton); 
 
 	}else{
 		var phoneNumberLabel = Ti.UI.createLabel({
@@ -168,13 +186,14 @@ function CreatePlacesDetailWindow(_place){
 			width :Ti.UI.SIZE,
 			height : '40dp',
 			title : 'View Web Site',
+			//bottom: 0,
 		});
 		//Add Website Button Event Listener
 		websiteButton.addEventListener('click', function() {
 			Ti.Platform.openURL('http://' + _place.website);
 		});
 		//Add Button to main window
-		scrollView.add(websiteButton);
+		contactView.add(websiteButton);
 
 	}// endof Web Site Check
 	
@@ -185,6 +204,7 @@ function CreatePlacesDetailWindow(_place){
 		height: '40dp',
 		title: 'Directions',
 		right: 15,
+		//bottom: 0,
 	});
 	
 	directionsButton.addEventListener('click',function(){
@@ -192,14 +212,14 @@ function CreatePlacesDetailWindow(_place){
 		Ti.Platform.openURL((Ti.Platform.osname == 'android') ? 'http://maps.google.com/?daddr=':'http://maps.apple.com/?daddr=' + encodedDestination);
 	});
 	
-	scrollView.add(directionsButton);
+	contactView.add(directionsButton);
 	
 	//Remove label from memory once window is closed!
 	self.addEventListener('close',function(){
 		label = null;
 	});
 	
-	self.add(scrollView);
+	self.add(mainView);
 	
 	//return the label to caller.
 	return self;
