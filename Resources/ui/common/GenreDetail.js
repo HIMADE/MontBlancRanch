@@ -102,7 +102,7 @@ function CreateGenreDetailWindow(_genre){
 			Ti.API.info(JSON.stringify(business));
 			var row = new GenreTVR(business);
 			tableView.appendRow(row);
-			if(i == e.businesses.length){
+			if(i == e.businesses.length - 1){
 				activityIndicator.hide();
 			}
 		};
