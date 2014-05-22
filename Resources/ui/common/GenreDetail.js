@@ -50,6 +50,25 @@ function CreateGenreDetailWindow(_genre){
 	
 	header.add(pxBorder);
 	
+	var style;
+	if (Ti.Platform.name === 'iPhone OS'){
+	  style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;
+	}else {
+	  style = Ti.UI.ActivityIndicatorStyle.DARK;
+	}
+	
+	var activityIndicator = Ti.UI.createActivityIndicator({
+	  color: 'black',
+	  font: {fontFamily:'Helvetica Neue', fontSize:26, fontWeight:'bold'},
+	  style:style,
+	  right:10,
+	  height:Ti.UI.SIZE,
+	  width:Ti.UI.SIZE
+	});
+	
+	header.add(activityIndicator);
+	activityIndicator.show();
+	
 	header.add(sectionLabel);
 	
 	close.addEventListener('click',function(){
@@ -84,7 +103,7 @@ function CreateGenreDetailWindow(_genre){
 			var row = new GenreTVR(business);
 			tableView.appendRow(row);
 			if(i == e.businesses.length){
-				activityIndicator.hide();
+				//activityIndicator.hide();
 			}
 		};
 		
@@ -92,27 +111,6 @@ function CreateGenreDetailWindow(_genre){
 
 	Yelp.GetBusinesses(_genre, CreateTableCb);
 	(_genre, CreateTableCb);
-	
-	var style;
-	if (Ti.Platform.name === 'iPhone OS'){
-	  style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;
-	}else {
-	  style = Ti.UI.ActivityIndicatorStyle.DARK;
-	}
-	
-	var activityIndicator = Ti.UI.createActivityIndicator({
-	  color: 'green',
-	  font: {fontFamily:'Helvetica Neue', fontSize:26, fontWeight:'bold'},
-	  message: 'Loading...',
-	  style:style,
-	  top:10,
-	  left:10,
-	  height:Ti.UI.SIZE,
-	  width:Ti.UI.SIZE
-	});
-	
-	self.add(activityIndicator);
-	activityIndicator.show();
 	
 	return self;
 };

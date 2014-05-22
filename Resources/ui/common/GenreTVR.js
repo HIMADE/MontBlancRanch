@@ -20,7 +20,7 @@ function CreateGenreTVR(_place){
 		text: _place.name,
 		left: 80,
 		width: Ti.UI.FILL,
-		wordWrap:false,
+		wordWrap:true,
 		top: 10,
 		font: {
 			fontSize: 16,

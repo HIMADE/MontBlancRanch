@@ -48,7 +48,7 @@ var CreateScrollerView = require('/ui/handheld/CreateScrollerView');
 var SectionWindow = require('/ui/handheld/SectionWindow');
 
 var activitiesWindow = new SectionWindow('Activities');
-var activities = new CreateScrollerView('Outdoor & Indoor \n Activities', 0xe676, activitiesWindow);
+var activities = new CreateScrollerView('Activities', 0xe676, activitiesWindow);
 
 var diningWindow = new SectionWindow('Dining');
 var dining = new CreateScrollerView('Drinks & Dining', 0xe669, diningWindow);

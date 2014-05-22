@@ -24,7 +24,7 @@ function CreateScrollerView(_textLabel, _labelIcon, _detailWindow){
 		text: String.fromCharCode(_labelIcon),
 		font: {
 			fontFamily: globals.customFont,
-			fontSize: 100
+			fontSize: 150
 		},
 		color: 'black',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -36,7 +36,7 @@ function CreateScrollerView(_textLabel, _labelIcon, _detailWindow){
 		text: _textLabel,
 		font: {
 			fontFamily: 'Helvetica',
-			fontSize: 20
+			fontSize: 35
 		},
 		color: 'black',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER

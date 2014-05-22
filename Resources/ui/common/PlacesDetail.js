@@ -77,8 +77,10 @@ function CreatePlacesDetailWindow(_place){
 			var placeLabel = Ti.UI.createLabel({
 						width: Ti.UI.FILL,
 						height: 30,
-						text: _place.name,
-						font: {fontSize: '17dp'},
+						text: ' '+ _place.name,
+						font: {	fontSize: '17dp',
+								fontWeight: 'bold'
+							},
 						wordWrap: true,
 						color:'white',
 						backgroundColor: 'black'
