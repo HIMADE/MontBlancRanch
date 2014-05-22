@@ -71,7 +71,7 @@ function CreatePlacesDetailWindow(_place){
 				contentHeight: 'auto',
 				contentWidth: 'auto',
 				layout: 'vertical',
-				scrollType: 'horizontal',
+				scrollType: 'vertical',
 			});
 			
 			var placeLabel = Ti.UI.createLabel({
