@@ -62,7 +62,7 @@ function CreateGenreDetailWindow(_genre){
 	  font: {fontFamily:'Helvetica Neue', fontSize:26, fontWeight:'bold'},
 	  style:style,
 	  right:10,
-	  height:Ti.UI.SIZE,
+	  height:50,
 	  width:Ti.UI.SIZE
 	});
 	
@@ -103,7 +103,7 @@ function CreateGenreDetailWindow(_genre){
 			var row = new GenreTVR(business);
 			tableView.appendRow(row);
 			if(i == e.businesses.length){
-				//activityIndicator.hide();
+				activityIndicator.hide();
 			}
 		};
 		
