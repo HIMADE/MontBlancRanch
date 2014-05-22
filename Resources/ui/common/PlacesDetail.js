@@ -2,11 +2,62 @@
 
 function CreatePlacesDetailWindow(_place){
 	//--Main Window--
-	alert(_place.reviews.length);
+	//alert(_place.reviews.length);
 	//Create the main window that will be returned by the constructor.
 	var self = Ti.UI.createWindow({
-		title: _place.name
+		navBarHidden: true,
+		backgroundImage: '/images/background.png',
+		layout: 'vertical'
 	});
+	
+	var header = Ti.UI.createView({
+		height: (globals.isiOS7) ? 70 : 50
+	});
+	
+	self.add(header);
+	
+	var close = Ti.UI.createLabel({
+		width: 50,
+		height: 50,
+		bottom: 0,
+		left: 0,
+		font: {
+			fontFamily: globals.customFont,
+			fontSize: 30,
+		},
+		text: String.fromCharCode(0xe681),
+		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+		color: 'black'
+	});
+	
+	var sectionLabel = Ti.UI.createLabel({
+		text: 'Business Details',
+		font: {
+			fontSize: 18,
+			fontWeight: 'bold'
+		},
+		bottom: 0,
+		height: 50,
+		left: 55,
+		color: 'black'
+	});
+	
+	var pxBorder = Ti.UI.createView({
+		height: 1,
+		width: Ti.UI.FILL,
+		backgroundColor:'black',
+		bottom: 0
+	});
+	
+	header.add(pxBorder);
+	
+	header.add(sectionLabel);
+	
+	close.addEventListener('click',function(){
+		self.close();
+	});
+	
+	header.add(close);
 	
 		var mainView = Ti.UI.createView({
 			width: Ti.UI.FILL,
@@ -20,8 +71,20 @@ function CreatePlacesDetailWindow(_place){
 				contentHeight: 'auto',
 				contentWidth: 'auto',
 				layout: 'vertical',
-				scrollType: 'vertical',
+				scrollType: 'horizontal',
 			});
+			
+			var placeLabel = Ti.UI.createLabel({
+						width: Ti.UI.FILL,
+						height: 30,
+						text: _place.name,
+						font: {fontSize: '17dp'},
+						wordWrap: true,
+						color:'white',
+						backgroundColor: 'black'
+					});
+					
+			scrollView.add(placeLabel);
 			
 			mainView.add(scrollView);
 		
@@ -41,7 +104,9 @@ function CreatePlacesDetailWindow(_place){
 					left: 5,
 					top: 5,
 					bottom: 5,
-					image: _place.image_url
+					image: _place.image_url,
+					borderWidth: 1,
+					borderColor: 'black'
 				});
 				
 				//Add the temporary label to the window!
@@ -55,25 +120,16 @@ function CreatePlacesDetailWindow(_place){
 				});
 				
 				infoView.add(info);
-		
-					var placeLabel = Ti.UI.createLabel({
-						left: 110,
-						top: 2,
-						width: Ti.UI.FILL,
-						height: Ti.UI.SIZE,
-						text: _place.name,
-						font: {fontSize: '17dp'},
-					});
-					
-					info.add(placeLabel);
 					
 					var locationLabel = Ti.UI.createLabel({
 						left: 110,
 						top: 2,
 						height: Ti.UI.SIZE,
 						width: Ti.UI.FILL,
+						wordWrap: true,
 						text: _place.location.display_address[0] + _place.location.display_address[1],
 						font: {fontSize: '13dp'},
+						color:'black'
 					});
 					
 					info.add(locationLabel);
@@ -85,6 +141,7 @@ function CreatePlacesDetailWindow(_place){
 						width: Ti.UI.FILL,
 						text: _place.phone,
 						font: {fontSize: '13dp'},
+						color:'black'
 					});
 					
 					info.add(phoneLabel);
@@ -105,7 +162,8 @@ function CreatePlacesDetailWindow(_place){
 					},
 					textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 					text: '  Customer Reviews',
-					backgroundColor: 'red'
+					backgroundColor: 'black',
+					color: 'white'
 				});
 				
 				reviewView.add(reviewsHeaderLabel);
@@ -115,7 +173,9 @@ function CreatePlacesDetailWindow(_place){
 					width: 50,
 					height: 50,
 					left: 5,
-					top: 35
+					top: 35,
+					borderWidth: 1,
+					borderColor: 'black'
 				});
 				
 				reviewView.add(reviewImage);
@@ -126,8 +186,10 @@ function CreatePlacesDetailWindow(_place){
 					right: 5,
 					top: 35,
 					width: Ti.UI.FILL,
+					wordWrap: true,
 					height: Ti.UI.SIZE,
 					font:{ fontSize: '12dp'},
+					color: 'black'
 				});
 				
 				reviewView.add(reviewDescriptionLabel);
@@ -157,7 +219,8 @@ function CreatePlacesDetailWindow(_place){
 					},
 					textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 					text: '  Deals',
-					backgroundColor: 'red'
+					backgroundColor: 'black',
+					color: 'white'
 				});
 				
 				dealView.add(dealsHeaderlabel);
@@ -170,6 +233,7 @@ function CreatePlacesDetailWindow(_place){
 						font: {fontSize: '13dp'},
 						textAlign: Ti.UI.TEXT_ALIGNEMENT_LEFT,
 						left: 5,
+						color: 'black'
 					});
 					
 					dealView.add(deals);
@@ -180,6 +244,7 @@ function CreatePlacesDetailWindow(_place){
 						top: 40,
 						left: 5,
 						font: {fontSize: '13dp'},
+						color: 'black'
 					});
 					
 					dealView.add(noDeals);

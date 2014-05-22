@@ -25,7 +25,8 @@ function CreateGenreTVR(_place){
 		font: {
 			fontSize: 16,
 			fontWeight: 'bold'
-		}
+		},
+		color: 'black'
 	});
 	
 	self.add(businessName);
@@ -33,9 +34,8 @@ function CreateGenreTVR(_place){
 	var ratingImageContainer = Ti.UI.createView({
 		height: Ti.UI.FILL,
 		width: Ti.UI.SIZE,
-		right: 0,
-		left: 80,
-		top: 30
+		right: 5,
+		top: 40
 	});
 	
 	self.add(ratingImageContainer);

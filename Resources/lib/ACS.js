@@ -2,6 +2,30 @@
 var Cloud = require('ti.cloud');
 var GenreTVR = require('/ui/common/GenreTVR');
 
+exports.GetInstructions = function(){
+	Cloud.Places.query({
+		classname : 'Instructions',
+	    page: 1,
+	    per_page: 20
+	}, function (e) {
+	    if (e.success) {
+	        Ti.API.info('Success:\n' +
+	            'Count: ' + e.Instructions.length);
+	            var data = [];
+	        for (var i = 0; i < e.Instructions.length; i++) {
+	            var instruction = e.Instructions[i];
+	            Ti.API.info(JSON.stringify(instruction));
+	            var row = GenreTVR(instruction);
+	        		data.push(row);
+	        }
+	        _cb(data);
+	    } else {
+	        alert('Error:\n' +
+	            ((e.error && e.message) || JSON.stringify(e)));
+	    }
+	});
+};
+
 exports.GetLocations = function(_genre, _cb){
 	Cloud.Places.query({
     page: 1,
@@ -40,7 +64,25 @@ exports.GetGenres = function(_section,_cb){
 			Ti.API.info('Success:\n' + 'Count: ' + e.genre.length);
 			for (var i = 0; i < e.genre.length; i++) {
 				var genre = e.genre[i];
-				data.push({'id': genre.id, 'title': genre.title, 'hasChild':true});
+				var tvr = Ti.UI.createTableViewRow({
+					id: genre.id,
+					hasChild: (globals.isAndroid)? false:true,
+					height: 50,
+					width: Ti.UI.FILL,
+					rowtitle: genre.title
+				});
+				
+				var tvrLabel = Ti.UI.createLabel({
+					text: genre.title,
+					font: {
+						fontSize: 18
+					},
+					left: 20,
+					color: 'black'
+				});
+				
+				tvr.add(tvrLabel);
+				data.push(tvr);
 			}
 			_cb(data);
 		} else {
