@@ -1,6 +1,7 @@
 var globals = {
 	isAndroid: (Ti.Platform.osname == 'android') ? true : false,
-	customFont: 'Pe-icon-7-stroke'
+	customFont: 'Pe-icon-7-stroke',
+	fontAwesome: (Ti.Platform.osname == 'android') ? 'fontawesome-webfont':'FontAwesome'
 };
 
 (function(){
