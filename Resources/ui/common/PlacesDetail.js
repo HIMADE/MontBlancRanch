@@ -44,9 +44,9 @@ function CreatePlacesDetailWindow(_place){
 	
 	var yelpLogo = Ti.UI.createImageView({
 		height: 25,
-		height: 50,
+		width: 50,
 		right: 5,
-		bottom: 5,
+		top:(globals.isiOS7) ? 20 : 0,
 		image: '/images/yelp_logo_50x25.png'
 	});
 	

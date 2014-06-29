@@ -21,10 +21,10 @@ function CreateSectionWindow(_section){
 		bottom: 0,
 		left: 0,
 		font: {
-			fontFamily: globals.customFont,
+			fontFamily: globals.fontAwesome,
 			fontSize: 30,
 		},
-		text: String.fromCharCode(0xe681),
+		text: String.fromCharCode(0xf053),
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 		color: 'black'
 	});
