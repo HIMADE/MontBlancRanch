@@ -44,6 +44,19 @@ function CreateScrollerView(_textLabel, _labelIcon, _detailWindow){
 	
 	innerContainer.add(mainViewTextLabel);
 	
+	var backgroundImage;
+	
+	switch (new Date().getDay()) {
+    case 'activities':
+        backgroundImage = "/images/MAIN.JPG";
+        break;
+    default : 
+    	backgroundImage = '';
+    	break;
+ 	};
+	
+	self.backgroundImage = backgroundImage;
+	
 	self.add(innerContainer);
 	
 	return self;

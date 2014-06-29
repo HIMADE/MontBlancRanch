@@ -2,11 +2,9 @@
 var Cloud = require('ti.cloud');
 var GenreTVR = require('/ui/common/GenreTVR');
 
-exports.GetInstructions = function(){
-	Cloud.Places.query({
+exports.GetInstructions = function(_cb){
+	Cloud.Objects.query({
 		classname : 'Instructions',
-	    page: 1,
-	    per_page: 20
 	}, function (e) {
 	    if (e.success) {
 	        Ti.API.info('Success:\n' +
@@ -15,8 +13,8 @@ exports.GetInstructions = function(){
 	        for (var i = 0; i < e.Instructions.length; i++) {
 	            var instruction = e.Instructions[i];
 	            Ti.API.info(JSON.stringify(instruction));
-	            var row = GenreTVR(instruction);
-	        		data.push(row);
+	            var row = {title:instruction.title, object: instruction};
+	        	data.push(row);
 	        }
 	        _cb(data);
 	    } else {

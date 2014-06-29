@@ -1,7 +1,8 @@
 var globals = {
 	isAndroid: (Ti.Platform.osname == 'android') ? true : false,
 	customFont: 'Pe-icon-7-stroke',
-	fontAwesome: (Ti.Platform.osname == 'android') ? 'fontawesome-webfont':'FontAwesome'
+	fontAwesome: (Ti.Platform.osname == 'android') ? 'fontawesome-webfont':'FontAwesome',
+	ACS: require('/lib/ACS')
 };
 
 (function(){
@@ -18,12 +19,13 @@ globals.isiOS7 = isiOS7;
 var win = Ti.UI.createWindow({
 	navBarHidden: true,
 	backgroundColor: 'white',
-	backgroundImage: '/images/background.png'
+	//backgroundImage: '/images/background.png'
 });
 
 var mainWindow = Ti.UI.createView({
 	height: Ti.UI.FILL,
 	width: Ti.UI.FILL,
+	backgroundImage: '/images/MAIN.JPG'
 });
 
 var logo = Ti.UI.createImageView({
@@ -47,6 +49,7 @@ mainWindow.add(logo);
 
 var CreateScrollerView = require('/ui/handheld/CreateScrollerView');
 var SectionWindow = require('/ui/handheld/SectionWindow');
+var InstructionsWindow = require('ui/handheld/InstructionsWindow');
 
 var activitiesWindow = new SectionWindow('Activities');
 var activities = new CreateScrollerView('Activities', 0xe676, activitiesWindow);
@@ -57,8 +60,11 @@ var dining = new CreateScrollerView('Drinks & Dining', 0xe669, diningWindow);
 var entertainmentWindow = new SectionWindow('Entertainment');
 var entertainment = new CreateScrollerView('Entertainment', 0xe6a4, entertainmentWindow);
 
+var instructionsWindow = new InstructionsWindow('Information');
+var instructions = new CreateScrollerView('Information', 0xf02d, instructionsWindow);
+
 var scroller = Ti.UI.createScrollableView({
-	views: [mainWindow, activities, dining, entertainment],
+	views: [mainWindow, instructions, activities, dining, entertainment],
 	scrollingEnabled: true,
 	showPagingControl: true,
 	pagingControlAlpha: 0.2,
